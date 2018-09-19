@@ -25,7 +25,7 @@ def train(**kwargs):
 	# ---------------------- 数据处理 ----------------------
 
 	# 获取数据
-	# train1, train2 = get_train_data(opt)
+	train1, train2 = get_train_data(opt)
 	# 获取样本
 	# train_sample = get_sample(train1, train2, load=True)
 	# 获取特征
