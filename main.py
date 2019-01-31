@@ -136,7 +136,10 @@ def train(**kwargs):
 	# gbm1, use_feat1 = load_model(opt)
 	# train_all.loc[:, 'pred'] = gbm1.predict(train_all[use_feat1])
 
-	# 去掉重要性较低的特征，筛选出排名前十的候选样本，重新训练模型（后期可以载入模型finetune，尤其是对于样本量较少的情况，甚至可以选前5，但15可以覆盖99.5%的原始label，10可以覆盖98%的原始label，这两者可能会好一些，备选方案：5(+finetune)，10(+finetune)，15(+finetune)）
+	# 去掉重要性较低的特征，筛选出排名前十的候选样本，重新训练模型（后期可以载入模型finetune，
+	# 尤其是对于样本量较少的情况，甚至可以选前5，
+	# 但15可以覆盖99.5%的原始label，10可以覆盖98%的原始label，
+	# 这两者可能会好一些，备选方案：5(+finetune)，10(+finetune)，15(+finetune)）
 	predictors = pd.DataFrame(data={'feature_name': gbm1.feature_name(), 'feature_importance': gbm1.feature_importance()})
 	predictors = predictors[predictors['feature_importance']>0]['feature_name'].values
 	print('第二层使用的特征：{}维\n'.format(len(predictors)), predictors)
